@@ -279,6 +279,7 @@ class diag_log_code_5gnr(IntEnum):
     LOG_5GNR_MAC_PDSCH_Stats = 0x888,
     LOG_5GNR_MAC_RACH_Trigger= 0x889,
     LOG_5GNR_MAC_UL_TB_Stats=0x881, 
+    LOG_5GNR_MAC_DCI=0x885,
     
     # RRC
     LOG_5GNR_RRC_OTA_MESSAGE           = 0x821 # 0xB821 NR RRC OTA
@@ -542,6 +543,7 @@ def log_mask_scat_lte(num_max_items=0x09ff, layers=[]):
             diag_log_code_5gnr.LOG_5GNR_MAC_PDSCH_Stats,
             diag_log_code_5gnr.LOG_5GNR_MAC_RACH_Trigger,
             diag_log_code_5gnr.LOG_5GNR_MAC_UL_TB_Stats,  
+            diag_log_code_5gnr.LOG_5GNR_MAC_DCI,
             ]
     if 'pdcp' in layers:
         items_lte += [
@@ -583,7 +585,7 @@ def log_mask_scat_lte(num_max_items=0x09ff, layers=[]):
             diag_log_code_5gnr.LOG_5GNR_NAS_5GMM_PLAIN_OTA_OUTGOING_MESSAGE,
             diag_log_code_5gnr.LOG_5GNR_NAS_5GMM_PLAIN_OTA_CONTAINER_MESSAGE,
         ]
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     if num_max_items < 0x0800:
         return create_log_config_set_mask(DIAG_SUBSYS_ID_LTE, num_max_items,
             *items_lte
@@ -626,6 +628,7 @@ def log_mask_scat_nr(num_max_items=0x09ff, layers=[]):
             diag_log_code_5gnr.LOG_5GNR_MAC_PDSCH_Stats,
             diag_log_code_5gnr.LOG_5GNR_MAC_RACH_Trigger,
             diag_log_code_5gnr.LOG_5GNR_MAC_UL_TB_Stats,
+            diag_log_code_5gnr.LOG_5GNR_MAC_DCI,
                 ]
     return create_log_config_set_mask(DIAG_SUBSYS_ID_LTE, num_max_items, *log_items)
 
