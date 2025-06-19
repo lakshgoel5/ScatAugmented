@@ -278,7 +278,7 @@ class diag_log_code_5gnr(IntEnum):
     LOG_5GNR_MAC_UL_Physical_Channel_Schedule_Report = 0x883,
     LOG_5GNR_MAC_PDSCH_Stats = 0x888,
     LOG_5GNR_MAC_RACH_Trigger= 0x889,
-    LOG_5GNR_MAC_UL_TB_Stats=0x881, 
+    LOG_5GNR_MAC_UL_TB_Stats=0x881,
     LOG_5GNR_MAC_DCI=0x885,
     
     # RRC
@@ -542,7 +542,7 @@ def log_mask_scat_lte(num_max_items=0x09ff, layers=[]):
             diag_log_code_5gnr.LOG_5GNR_MAC_UL_Physical_Channel_Schedule_Report,
             diag_log_code_5gnr.LOG_5GNR_MAC_PDSCH_Stats,
             diag_log_code_5gnr.LOG_5GNR_MAC_RACH_Trigger,
-            diag_log_code_5gnr.LOG_5GNR_MAC_UL_TB_Stats,  
+            diag_log_code_5gnr.LOG_5GNR_MAC_UL_TB_Stats,
             diag_log_code_5gnr.LOG_5GNR_MAC_DCI,
             ]
     if 'pdcp' in layers:
