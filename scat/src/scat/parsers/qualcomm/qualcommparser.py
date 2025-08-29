@@ -699,11 +699,14 @@ class QualcommParser:
 
         if len(pkt) < 16:
             self.write_to_log_file(f'{pkt}')
+            self.write_required_logs(f'packet length less than 16 {pkt}')
             return
 
         pkt_header = self.log_header._make(struct.unpack('<BBHHHQ', pkt[0:16]))
         pkt_body = pkt[16:]
-        self.write_to_log_file(f"{hex(pkt_header.log_id)}")        
+        if pkt_header.log_id == 47237:
+            self.write_to_log_file(f"{hex(pkt_header.log_id)}")
+            self.write_required_logs(f"Header: {hex(pkt_header.log_id)} , Body: {pkt_body.hex()}")
         
         if len(pkt_body) != (pkt_header.length2 - 12):
             self.logger.log(logging.WARNING, "Packet length mismatch: expected {}, got {}".format(pkt_header.length2, len(pkt_body)+12))
@@ -715,8 +718,8 @@ class QualcommParser:
             #print("Not handling XDM Header 0x%04x (%s)" % (xdm_hdr[1], self.no_process[xdm_hdr[1]]))
             return None
         else:
+            print("unknown", hex(pkt_header.log_id))
             print(pkt_body.hex())
-            print("unknown", pkt_header.log_id)
             #print("Unhandled XDM Header 0x%04x" % xdm_hdr[1])
             #util.xxd(pkt)
             return None
@@ -725,6 +728,12 @@ class QualcommParser:
     
     def write_to_log_file(self, s):
         f = open('log.txt', 'a')
+        f.write(str(s))
+        f.write('\n')
+        f.close()
+
+    def write_required_logs(self, s):
+        f = open('requiredmcshex.txt', 'a')
         f.write(str(s))
         f.write('\n')
         f.close()
