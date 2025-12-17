@@ -1,5 +1,9 @@
-# SCAT: Signaling Collection and Analysis Tool
+# ScatAugmented: An augmented version of Signaling Collection and Analysis Tool
 
+command: `python main.py -t qc -s /dev/ttyUSB0 -b 9600 --disable-crc-check -L 'ip,nas,rrc,pdcp,rlc,mac,qmi' --qmdl sample.qmdl`
+
+
+Original Readme:
 This application parses diagnostic messages of Qualcomm and Samsung baseband
 through USB, and generates a stream of GSMTAP packet containing cellular control
 plane messages.
